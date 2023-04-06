@@ -1,5 +1,5 @@
 <?php
-include "../throughpass.php";
+include "../config.php";
    if(isset($_POST['submit']) )
    {
       $mail_to=$_POST['email'];
@@ -64,26 +64,6 @@ else {
 <!-- End of Async Callbell Code -->
 
     </head>
-
-<?php
-include '../../throughpass.php';
- $result = mysqli_query($con,"SELECT * FROM background order by id desc limit 1  ");
- $queryResult = mysqli_num_rows($result);
-  if ($queryResult > 0) {
-while($row = mysqli_fetch_array($result)) 
-
-{ 
-
-$bg=$row['image'];
-$color=$row['last_name'];
-$date=$row['first_name'];
-$font=$row['font'];
-
-$url='https://boradesigns.co.ke/wazito/upload/';
-
-$bg1=$url.$bg;
-
-?>
     <body class="authentication-bg" style="background-image: url('<?php echo "$bg1";?>');background-size: auto; ">
   
 
@@ -105,14 +85,14 @@ $bg1=$url.$bg;
                         </div><br>
                         
                                 <div class="text-center mb-4">
-                                    <h4 class="text-uppercase mt-0"style="color: <?php echo"$font;"?>"  >Bora Designs<br>Recover Password</h4>
+                                    <h4 class="text-uppercase mt-0"  >BBA<br>Recover Password</h4>
                                 </div>
 
                                 <form action="reset-password.php" method="POST">
 
                                     <div class="form-group mb-3">
-                                        <label for="emailaddress" style="color: <?php echo"$font;"?>">Email address</label>
-                                        <input class="form-control" parsley-type="email" type="email" parsley-type="email" id="email" name='email'required=""value="<?php echo $email; ?>"  placeholder="Enter your email">
+                                        <label for="emailaddress" >Email address</label>
+                                        <input class="form-control" parsley-type="email" type="email" parsley-type="email" id="email" name='email'required=""  placeholder="Enter your Email">
                                     </div>
 
                                     <div class="form-group mb-0 text-center">
@@ -129,9 +109,9 @@ $bg1=$url.$bg;
                         <div class="row mt-3">
                             <div class="col-12 text-center">
                                 
-                                <p class="text" style="color: <?php echo"$font;"?>">Remembered your Password? <a href="https://boradesigns.co.ke/affiliate-login" class="text"  style="color: <?php echo"$font;"?>"><b >Sign In</b></a></p>
+                                <p class="text" >Remembered your Password? <a href="login.php" class="text"  ><b >Sign In</b></a></p>
                             </div> <!-- end col -->
-                        </div>  <?php }} ?>
+                        </div>  
                         <!-- end row -->
 
                     </div> <!-- end col -->

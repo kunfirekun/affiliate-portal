@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;                            
                             
                             // Redirect user to welcome page
-                            header("location: https://boradesigns.co.ke/affiliate/home.php");
+                            header("location: ../home.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -129,7 +129,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         
                         <div class="card">
 
-                            <div class="card-body p-4" style="background-color: <?php echo"$color";?>;">
+                            <div class="card-body p-4" >
                                 <div class="text-center">
                             <a href="https://boradesigns.co.ke" class="logo">
                                 <img src="../assets/images/logo-light.png" alt="" height="44" class="logo-light mx-auto">
@@ -139,20 +139,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                         </div><br>
                         
-                                <div class="text-center mb-4">
-                                    <h4 class="text-uppercase mt-0" style="color: <?php echo"$font";?>;">Affiliate Portal</h4>
+                        <div class="text-center mb-4">
+                                    <h4 class="text-uppercase mt-0"  >BBA<br>Recover Password</h4>
                                 </div>
 
                                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
                                     <div class="form-group mb-3  <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                                        <label for="username" style="color: <?php echo"$font";?>;">Username</label>
+                                        <label for="username" >Username</label>
                                         <input class="form-control" data-parsley-type="alphanum" name="username" type="text" id="Username" required="" value="<?php echo $username; ?>" placeholder="Enter your Username">
                                         <span class="help-block" style="color: red;"><?php echo $username_err; ?></span>
                                     </div>
 
                                     <div class="form-group mb-3 <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>" >
-                                        <label for="password" style="color: <?php echo"$font";?>;">Password</label>
+                                        <label for="password" >Password</label>
                                         <input class="form-control" data-parsley-type="alphanum" name="password" type="password" required="" id="password" placeholder="Enter your password" >
                                         <span class="help-block" style="color: red;"><?php echo $password_err; ?></span>
                                     </div>
@@ -171,8 +171,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
-                                <p style="color: <?php echo"$font;"?>"> <a href="reset-password.php" class="text ml-1" style="color: <?php echo"$font;"?>"><i class="fa fa-lock mr-1" style="color: <?php echo"$font;"?>"></i>Forgot your password?</a></p>
-                                <p class="text" style="color: <?php echo"$font;"?>">Don't have an account? <a href="register_affiliate.php" class="text"  style="color: <?php echo"$font;"?>"><b >Sign Up</b></a></p>
+                                <p > <a href="reset-password.php" class="text ml-1" ><i class="fa fa-lock mr-1" ></i>Forgot your password?</a></p>
+                                <p class="text" >Don't have an account? <a href="register_affiliate.php" class="text"  ><b >Sign Up</b></a></p>
                             </div> <!-- end col -->
                         </div> 
                         <!-- end row -->

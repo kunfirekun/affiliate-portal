@@ -1,7 +1,7 @@
 <?php
 // Include config file
-require_once "config.php";
-require_once "../../geo.php";
+require_once "../config.php";
+//require_once "../geo.php";
  
 // Define variables and initialize with empty values
 $email = $password = $confirm_password = "";
@@ -10,18 +10,20 @@ $email_err = $password_err = $confirm_password_err = "";
 
 
 
-$geoplugin = new geoPlugin();
+
+
+//$geoplugin = new geoPlugin();
 // If we wanted to change the base currency, we would uncomment the following line
 // $geoplugin->currency = 'EUR';
  
-$geoplugin->locate();
-$stamper_2=date("Y-m-d");
-$city=$geoplugin->city;
-$country=$geoplugin->countryName;
-$longitude=$geoplugin->longitude;
-$latitude=$geoplugin->latitude;
-$nearby=$geoplugin->locationAccuracyRadius;
-$region=$geoplugin->region;
+//$geoplugin->locate();
+//$stamper_2=date("Y-m-d");
+//$city=$geoplugin->city;
+//$country=$geoplugin->countryName;
+//$longitude=$geoplugin->longitude;
+//$latitude=$geoplugin->latitude;
+//$nearby=$geoplugin->locationAccuracyRadius;
+//$region=$geoplugin->region;
 
 
 
@@ -31,13 +33,13 @@ $region=$geoplugin->region;
 
  
     // Validate username
-    if(empty(trim($_POST["email"]))){
+    if(empty(trim($_POST['email']))){
         $email_err = "Please enter a email.";
     } else{
         // Prepare a select statement
         $sql = "SELECT id FROM affiliate WHERE email = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_email);
             
@@ -122,7 +124,7 @@ $uname= generateRandomString($lenght);
 $stamper=date("Y-m-d");
 $stamper_2=date("Y-m-d", time() + 604800);
 $process='non-process';
-$status_on=off;
+$status_on='off';
 
 $link3="https://boradesigns.co.ke/affiliate/email-confirm/";
 $url=$link3.$uname;
@@ -141,7 +143,7 @@ $str=$row["jargon"];
        // Prepare an insert statement
         $sql = "INSERT INTO affiliate (email,password,username,  phone,link,str,jargon,subscription_start,subscription_end,process,status_on,email_confirm1) VALUES (?, ?,'$email1','$phone','$link2', '$str','$uname','$stamper','$stamper_2','$process','$status_on','$url')";
          
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_email, $param_password);
             
@@ -171,7 +173,7 @@ $str=$row["jargon"];
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($con);
 }
 ?>
 
@@ -194,46 +196,11 @@ $str=$row["jargon"];
         <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="../assets/css/app.min.css" id="app-stylesheet" rel="stylesheet" type="text/css" />
-        <script>
-  window.callbellSettings = {
-    token: "8PFCJbqkCGDgA9HhDxkPyhea"
-  };
-</script>
-<script>
-  (function(){var w=window;var ic=w.callbell;if(typeof ic==="function"){ic('reattach_activator');ic('update',callbellSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Callbell=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://dash.callbell.eu/include/'+window.callbellSettings.token+'.js';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
-</script>
-<!-- End of Async Callbell Code -->
-<script data-ad-client="ca-pub-2204694268557273" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<script async >
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-142109273-2');
-</script> 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142109273-2"></script>
     </head>
 
-<?php
-include '../../throughpass.php';
- $result = mysqli_query($con,"SELECT * FROM background order by id desc limit 1  ");
- $queryResult = mysqli_num_rows($result);
-  if ($queryResult > 0) {
-while($row = mysqli_fetch_array($result)) 
 
-{ 
-
-$bg=$row['image'];
-$color=$row['last_name'];
-$date=$row['first_name'];
-$font=$row['font'];
-
-$url='https://boradesigns.co.ke/wazito/upload/';
-
-$bg1=$url.$bg;
-
-?>
     <body class="authentication-bg" style="background-image: url('<?php echo "$bg1";?>');background-size: auto; ">
   
 
@@ -262,30 +229,30 @@ $bg1=$url.$bg;
 
                                     <div class="form-group mb-3  <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                                         <label for="username" style='color:<?php echo"$font"; ?>;'>Username</label>
-                                        <input class="form-control" name="username" type="text" data-parsley-type="alphanum"  id="Username" required="" value="<?php echo $email1; ?>" placeholder="Enter your Username">
+                                        <input class="form-control" name="username" type="text" data-parsley-type="alphanum"  id="Username" required=""  placeholder="Enter your Username">
                                        
                                     </div>
                                     
                                      <div class="form-group mb-3 " >
                                         <label for="email" style='color:<?php echo"$font"; ?>;'>Email</label>
-                                        <input class="form-control" name="email" type="text" required=""  parsley-type="email"  id="email" value="<?php echo $email; ?>" placeholder="Enter your Email" >
+                                        <input class="form-control" name="email" type="text" required=""  parsley-type="email"  id="email"  placeholder="Enter your Email" >
                                         
                                     </div>
                                     
                                      <div class="form-group mb-3 " >
                                         <label for="password" style='color:<?php echo"$font"; ?>;'>Phone Number</label>
-                                        <input class="form-control" data-parsley-type="digits" name="phone" type="text" required="" id="phone" value="<?php echo $phone; ?>" placeholder="Enter your Phone Number" >
+                                        <input class="form-control" data-parsley-type="digits" name="phone" type="text" required="" id="phone" placeholder="Enter your Phone Number" >
                                         
                                     </div>
 
                                     <div class="form-group mb-3 <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>" >
                                         <label for="password"style='color:<?php echo"$font"; ?>;'>Password</label>
-                                        <input class="form-control" name="password" type="password" required="" id="password" value="<?php echo $password; ?>" placeholder="Enter your password" >
+                                        <input class="form-control" name="password" type="password" required="" id="password"  placeholder="Enter your password" >
                                         
                                     </div>
                                     <div class="form-group mb-3 <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>" >
                                         <label for="password" style='color:<?php echo"$font"; ?>;'>Confirm Password</label>
-                                        <input class="form-control" name="confirm_password" value="<?php echo $confirm_password; ?>" type="password" required="" id="password" placeholder="Enter your password" >
+                                        <input class="form-control" name="confirm_password"  type="password" required="" id="password" placeholder="Enter your password" >
                                        
                                     </div>
                                     
@@ -306,9 +273,9 @@ $bg1=$url.$bg;
                         <div class="row mt-3">
                             <div class="col-12 text-center">
                                 
-                                <p class="text-muted" style="color: <?php echo"$font;"?>">Have an account? <a href="https://boradesigns.co.ke/affiliate-login" class="text-dark ml-1" style="color: <?php echo"$font;"?>"><b style="color: <?php echo"$font;"?>" >Log In</b></a></p>
+                                <p class="text-muted" style="color: <?php echo"$font;"?>">Have an account? <a href="login.php" class="text-dark ml-1" style="color: <?php echo"$font;"?>"><b style="color: <?php echo"$font;"?>" >Log In</b></a></p>
                             </div> <!-- end col -->
-                        </div>  <?php }} ?>
+                        </div> 
                         <!-- end row -->
 
                     </div> <!-- end col -->

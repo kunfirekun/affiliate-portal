@@ -9,7 +9,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 }
  
 // Include config file
-require_once "config.php";
+require_once "../config.php";
  
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare a select statement
         $sql = "SELECT id, username, password FROM affiliate WHERE username = ? AND process ='process' AND status_on='on' AND del_acc !='1' ";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($con);
 }
 ?>
 
@@ -107,51 +107,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <link href="../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="../assets/css/app.min.css" id="app-stylesheet" rel="stylesheet" type="text/css" />
-        <script>
-  window.callbellSettings = {
-    token: "8PFCJbqkCGDgA9HhDxkPyhea"
-  };
-</script>
-<script>
-  (function(){var w=window;var ic=w.callbell;if(typeof ic==="function"){ic('reattach_activator');ic('update',callbellSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Callbell=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://dash.callbell.eu/include/'+window.callbellSettings.token+'.js';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()
-</script>
+    
 
 
 
 
-<script data-ad-client="ca-pub-2204694268557273" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-<script async >
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'UA-142109273-2');
-</script> 
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-142109273-2"></script>
-<!-- End of Async Callbell Code -->
+
 
     </head>
 
-<?php
-include '../../throughpass.php';
- $result = mysqli_query($con,"SELECT * FROM background order by id desc limit 1  ");
- $queryResult = mysqli_num_rows($result);
-  if ($queryResult > 0) {
-while($row = mysqli_fetch_array($result)) 
 
-{ 
-
-$bg=$row['image'];
-$color=$row['last_name'];
-$date=$row['first_name'];
-$font=$row['font'];
-
-$url='https://boradesigns.co.ke/wazito/upload/';
-
-$bg1=$url.$bg;
-
-?>
     <body class="authentication-bg" style="background-image: url('<?php echo "$bg1";?>');background-size: auto; ">
   
 
@@ -173,7 +140,7 @@ $bg1=$url.$bg;
                         </div><br>
                         
                                 <div class="text-center mb-4">
-                                    <h4 class="text-uppercase mt-0" style="color: <?php echo"$font";?>;">Bora Designs<br>Sign In</h4>
+                                    <h4 class="text-uppercase mt-0" style="color: <?php echo"$font";?>;">Affiliate Portal</h4>
                                 </div>
 
                                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -207,18 +174,9 @@ $bg1=$url.$bg;
                                 <p style="color: <?php echo"$font;"?>"> <a href="reset-password.php" class="text ml-1" style="color: <?php echo"$font;"?>"><i class="fa fa-lock mr-1" style="color: <?php echo"$font;"?>"></i>Forgot your password?</a></p>
                                 <p class="text" style="color: <?php echo"$font;"?>">Don't have an account? <a href="register_affiliate.php" class="text"  style="color: <?php echo"$font;"?>"><b >Sign Up</b></a></p>
                             </div> <!-- end col -->
-                        </div>  <?php }} ?>
+                        </div> 
                         <!-- end row -->
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-2204694268557273"
-     data-ad-slot="4032510203"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
                     </div> <!-- end col -->
                 </div>
                 <!-- end row -->

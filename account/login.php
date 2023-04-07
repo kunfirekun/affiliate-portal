@@ -172,7 +172,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <div class="row mt-3">
                             <div class="col-12 text-center">
                                 <p > <a href="reset-password.php" class="text ml-1" ><i class="fa fa-lock mr-1" ></i>Forgot your password?</a></p>
-                                <p class="text" >Don't have an account? <a href="register_affiliate.php" class="text"  ><b >Sign Up</b></a></p>
+                                
                             </div> <!-- end col -->
                         </div> 
                         <!-- end row -->
